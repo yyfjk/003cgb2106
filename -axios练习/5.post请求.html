@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>POST请求</title>
+	</head>
+	<body>
+		<h1>前后端调用13-</h1>
+
+		<script src="./js/axios.js"></script>
+		<script>
+			/* 
+		需求：需求将id=238
+		   改为name="小鬼当家"，age=4,sex=男
+		 */
+
+			let user = {
+				id: 282,
+				name: "小鬼当",
+				age: 4,
+				sex: '男'
+			}
+			let url = "http://localhost:8090/axios/updateUser"
+			axios.put(url, user)
+				.then(promise => {
+					console.log(promise.data)
+				})
+
+
+
+let name = "小燕子"
+		 let user2 ={
+			 			 name:'小鬼当家',
+			 			 age:18,
+			 			 sex:'男',
+						
+			 }
+			 
+			 let url2=`http://localhost:8090/axios/updateUserByName/${name}`
+				axios.put(url2,user2)
+							.then(promise =>{
+								console.log(promise.data)
+							})	
+		</script>
+	</body>
+</html>

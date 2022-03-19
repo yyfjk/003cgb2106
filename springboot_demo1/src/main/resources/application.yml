@@ -1,0 +1,12 @@
+#语法说明
+## 语法1： 数据结构    key-value结构
+##  语法2: 写法   ley:(空格)value
+##   语法3 ：yml文件   默认字符集是UTF-8中文不乱
+##   语法4： yml文件   有层级效果   注意缩进
+server:
+ port: 8080
+#springBoot启动时 默认加载yml文件
+msg:
+ hello: "今天下雨，记得带伞~~~"
+
+

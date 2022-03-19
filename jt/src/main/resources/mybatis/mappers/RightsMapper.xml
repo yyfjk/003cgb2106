@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.mapper.RightsMapper">
+    <select id="getRightsList" resultMap="rightsRM">
+        SELECT  p.id,p.name,p.parent_id,p.path,p.level,p.created,p.updated,
+                c.id c_id,c.name c_name,c.parent_id c_parent_id,
+                c.path c_path,c.level c_level,c.created c_created,
+                c.updated c_updated	 FROM
+                (SELECT * FROM rights WHERE parent_id = 0)p
+                    LEFT JOIN
+            rights c
+                ON
+                p.id = c.parent_id
+    </select>
+
+    <!--
+    完成左侧菜单列表的数据封装1-2级
+    -->
+    <resultMap id="rightsRM" type="Rights" autoMapping="true">
+        <id property="id" column="id"></id>
+        <!--
+        封装一对多的数据
+        -->
+        <collection property="children" ofType="Rights">
+
+            <id property="id" column="c_id"/>
+            <result property="name" column="c_name"/>
+            <result property="parentId" column="c_parent_id"/>
+            <result property="path" column="c_path"/>
+            <result property="level" column="c_level"/>
+            <result property="created" column="c_created"/>
+            <result property="updated" column="c_updated"/>
+        </collection>
+    </resultMap>
+
+
+
+    <!--
+    利用子查询的方式来获取数据
+    -->
+    <select id="getRightsList2" resultMap="childrenRM">
+        select  * from rights where parent_id=0
+    </select>
+    <resultMap id="childrenRM" type="Rights" autoMapping="true">
+        <id property="id" column="id"></id>
+        <!--        一对多的封装 column='自查询的条件中产地的参数'-->
+        <collection property="children" ofType="Rights" select="selectRightsByParentId" column="id"/>
+
+    </resultMap>
+    <!--    单表查询子数据-->
+    <select id="selectRightsByParentId" resultType="Rights">
+        select  * from rights where parent_id=#{id}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+

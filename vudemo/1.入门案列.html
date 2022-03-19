@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 基本的语法
+		 1.导入JS的类库
+		 2.指定vue渲染的区域
+		 3.实例化vue的对象
+		 4.数据取值
+		 
+		 -->
+		<script src="./js/vue.js"></script>
+		<div id="app">
+			<h1>{{msg}}</h1>
+		</div>
+		<script>
+			/* 关于js中变量定义说明
+			1.var  没有作用域的概念 容易出现安全性的问题
+			2.let 作用于var类似，有作用域的概念    局部变量
+			 3.const  定义常量
+			 */
+			
+			const app=new Vue({
+				el:"#app",
+				data:{
+				   msg:"vue入门案列"	
+				}
+				
+			})
+			
+		</script>
+	</body>
+</html>

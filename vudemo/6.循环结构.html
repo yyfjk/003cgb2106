@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body bgcolor="aquamarine">
+		<div id="app">
+			<!-- 指令-->
+			<!-- 以循环的方式输出爱好 -->
+			
+			<div id="demo1">
+				<!-- <p v-for="value in hobby">{{value}}</p> -->
+				<p v-for="value in hobby" v-text="value"></p>
+				
+			</div>
+			<hr />
+			<!-- 展现下标 -->
+			<p v-for="value,index in hobby">
+				<span v-text="index+1"></span>
+				----------
+				<span v-text="value"></span>
+			</p>
+			<hr / color="aquamarine">
+			<div id="demo3">
+				<table class="a" border="1px" width="90%"cellspacing="0px">
+					<tr align="center">
+						<td>编号</td>
+						<td>名称</td>
+						<td>年龄</td>
+					</tr>
+					<tr align="center" v-for="user in userList">
+						<td v-text="user.id"></td>
+						<td v-text="user.name"></td>
+						<td v-text="user.age"></td>
+					</tr>
+					<p v-for="value,index in userList">
+						<span v-text="index"></span>
+						<span v-text="value"></span>
+						
+					</p>
+					
+				</table>
+			</div>
+		</div>
+
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data: {
+					hobby: ["敲代码", "改bug", "专研技术"],
+					userList:[{id:100,name:"校长",age:60},
+					{id:101,name:"小王",age:68},
+					{id:102,name:"哄你与",age:300000},
+					]
+				},
+				methods: {
+
+				}
+
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>delete请求</title>
+	</head>
+	<body>
+		<h1>前后端调用-post请求测试</h1>
+
+		 <script src="./js/axios.js"></script>
+		 <script>
+		
+		/* 
+			需求：实现用户新增的操作
+			语法：axios.post(url,新增参数)
+			规则：如果post/put 传递对象则直接就赋值
+		 */
+		let user={
+			name:"小燕子",
+			age:18,
+			sex:'女'
+		}
+		let url="http://localhost:8090/axios/saveUser"
+		axios.post(url,user)
+		.then(Promise=>{
+			console.log(Promise.data)
+		})
+		
+		
+		
+		</script>
+	</body>
+</html>

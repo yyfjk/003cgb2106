@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>案例练习</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 新增div -->
+			<div align="center">
+				<h3>用户新增</h3>
+				姓名: <input type="text"/>
+				年龄: <input type="text"/>
+				性别: <input type="text"/>
+				<!-- 点击调用入库函数 -->
+				<button>新增</button>
+			</div>
+			<hr />
+			<!-- 修改div -->
+			<div align="center">
+				<h3>用户修改</h3>
+				<p>
+					编号: <input type="text" disabled/>
+					姓名: <input type="text" />
+				</p>
+				<p>
+					年龄: <input type="text" />
+					性别: <input type="text" />
+				</p>
+				<p>
+					<button>修改</button>
+				</p>
+				
+			</div>
+			<hr />
+			<!-- 展现div -->
+			<div>
+				<table border="1px" align="center" width="80%">
+					<tr align="center">
+						<th colspan="5"><h3>用户列表</h3></th>
+					</tr>
+					<tr align="center">
+						<th>编号</th>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>性别</th>
+						<th>操作</th>
+					</tr>
+					<!-- 利用循环遍历实现数据展现 -->
+					<tr align="center" v-for="user in userList">
+						<th></th>
+						<th></th>
+						<th ></th>
+						<th ></th>
+						<th width="20%">
+							<button>修改</button>
+							<!-- 调用方法 将"当前"对象传递 -->
+							<button>删除</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<!-- 1.引入类库 vue/axios -->
+		<script src="./js/axios.js"></script>
+		<script src="./js/vue.js"></script>
+
+		
+		<!-- 2.创建vue对象 -->
+		<script>
+			 
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+git 工作区  缓存区   本地仓库  远程仓库
+1.检查当前分支     git  branch
+2.创建分支       git checkout -b 新分支名称
+3.推送新分支      git push -u origin 新分支名称    第一次推送需要写-u
+4.将文件添加到暂存区   git add .
+5.提交代码	     git commit -m "提交消息"
+6.推动代码到云端     git  push 
+7.合并代码到主分支    git  merge 分支名称
+8.克隆代码		 git clone  "仓库地址"
+9.将远程库的数据更新到本地  git pull

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jt.mapper.UserMapper">
+
+    <!--Oracle中 ;号必定报错  不要加;号
+        resultType:
+            1.如果有别名包则自动拼接  com.jt.pojo.User
+            2.如果根据别名找不到,则使用默认规则
+     -->
+    <select id="findAll" resultType="User">
+        select * from demo_user
+    </select>
+
+
+
+
+    <!--驼峰规则说明:
+        Mybatis 功能1: 可以实现结果集与实体对象的映射!!!
+        对象与表 一一对应,
+        对象中的属性与表中的字段 一一对应.
+
+        User(userId,userName)
+        user表(user_id,user_name)
+        resultType: 不能映射.
+        resultMap:  自己手动编辑.
+        简化上述的操作: 引入驼峰规则.
+
+        思考:开启驼峰规则如下是否可以映射???
+             User(user_id,user_name)
+             user表(user_id,user_name)
+             字段user_id~~~userid~~~userId~~~~
+             setUserId(..)方法
+        规则: 如果开启驼峰规则,必须按照要求编辑否则报错
+    -->
+
+
+
+</mapper>

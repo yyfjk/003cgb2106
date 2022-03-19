@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+
+			{{num}}
+			<button v-on:click="num++">自增</button>
+			<!-- <button v-on:click="addNum">自增函数</button> -->
+			<button @click="addNum">自增函数</button>
+		</div>
+
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data: {
+					num: 100
+				},
+				methods:{
+					addNum:function(){
+						this.num++
+					}
+				}
+
+			})
+		</script>
+	</body>
+</html>

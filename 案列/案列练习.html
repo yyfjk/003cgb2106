@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>案例练习</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 新增div -->
+			<div align="center">
+				<h3>用户新增</h3>
+				姓名: <input type="text" v-model="addUser.name"/>
+				年龄: <input type="text" v-model="addUser.age"/>
+				性别: <input type="text" v-model="addUser.sex"/>
+				<!-- 点击调用入库函数 -->
+				<button @click="addUserBtn">新增</button>
+			</div>
+			<hr />
+			<!-- 修改div -->
+			<div align="center">
+				<h3>用户修改</h3>
+				<p>
+					编号: <input type="text" disabled/>
+					姓名: <input type="text" />
+				</p>
+				<p>
+					年龄: <input type="text" />
+					性别: <input type="text" />
+				</p>
+				<p>
+					<button>修改</button>
+				</p>
+				
+			</div>
+			<hr />
+			<!-- 展现div -->
+			<div>
+				<table border="1px" align="center" width="80%">
+					<tr align="center">
+						<th colspan="5"><h3>用户列表</h3></th>
+					</tr>
+					<tr align="center">
+						<th>编号</th>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>性别</th>
+						<th>操作</th>
+					</tr>
+					<!-- 利用循环遍历实现数据展现 -->
+					<tr align="center" v-for="user in userList">
+						<th v-text="user.id"></th>
+						<th v-text="user.name"></th>
+						<th v-text="user.age"></th>
+						<th v-text="user.sex"></th>
+						<th width="20%">
+							<button>修改</button>
+							<!-- 调用方法 将"当前"对象传递 -->
+							<button @click="deleteUser(user)">删除</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<!-- 1.引入类库 vue/axios -->
+		<script src="./js/axios.js"></script>
+		<script src="./js/vue.js"></script>
+
+		
+		<!-- 2.创建vue对象 -->
+		<script>
+			
+			 //3.定义axios请求的前缀
+			 axios.defaults.baseURL = "http://localhost:8090/vue"
+			
+			 const app = new Vue({
+				 el: "#app",
+				 data: {
+					//定义用户数据
+					 userList: [],
+					 //封装新增数据
+					 addUser: {
+						 name: '',
+						 age: '',
+						 sex: ''
+					 }
+				 },
+				 methods: {
+					 //获取用户信息
+					 getUserList(){
+						 axios.get("/findAll")
+							  .then(promise => {
+								  //将返回值结果 赋值给vue对象
+								  this.userList = promise.data
+							  })
+					 },
+					 //实现数据新增
+					 addUserBtn(){
+						 axios.post("/saveUser",this.addUser)
+							  .then(promise => {
+								  //获取服务器返回值
+								  let msg = promise.data
+								  //弹出框操作
+								  alert(msg)
+								  //将列表数据刷新
+								  this.getUserList()
+								  //新增之后,将数据清空
+								  this.addUser = {}
+							  })
+					 },
+					 deleteUser(user){
+						//问题: 用户点击删除,如何获取数据?? 
+						//答: 传递循环遍历的数据即可.
+						axios.delete("/deleteUserById?id="+user.id)
+							 .then(promise => {
+								 //弹出提示信息
+								 alert(promise.data)
+								 //刷新列表信息
+								 this.getUserList()
+							 })
+						
+					 }
+				 },
+				 //利用生命周期函数触发ajax
+				 created(){
+					 //alert("生命周期函数")
+					 this.getUserList()
+				 }
+			 })
+		</script>
+	</body>
+</html>
