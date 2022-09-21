@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+    <!--Oracle中 ;号必定报错  不要加;号  -->
+    <select id="findAll" resultType="User">
+        select * from demo_user
+    </select>
+
+</mapper>
